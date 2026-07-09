@@ -1,5 +1,7 @@
-# Deploys the site to GitHub Pages on every push to the default branch.
-# The site is plain HTML/CSS/JS, so the whole repo root is uploaded as-is.
+# Publishes the site to GitHub Pages.
+# Pages serves the `gh-pages` branch; this workflow keeps that branch in
+# sync with the default branch on every push, so editing any file on the
+# default branch automatically updates the live site.
 name: Deploy to GitHub Pages
 
 on:
@@ -8,9 +10,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
   group: pages
@@ -18,25 +18,13 @@ concurrency:
 
 jobs:
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-        with:
-          # Enables GitHub Pages for the repo on first run
-          enablement: true
-
-      - name: Upload site
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: .
-
-      - name: Deploy
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Publish to gh-pages branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git push origin HEAD:gh-pages --force
