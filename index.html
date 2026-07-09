@@ -363,11 +363,15 @@
   <section id="home" class="relative min-h-screen flex flex-col lg:flex-row">
     <!-- Left: portrait photo placeholder -->
     <div class="lg:w-[45%] min-h-[48vh] lg:min-h-screen relative">
-      <!-- TO ADD THE REAL PHOTO: replace this div with
-           <img src="your-photo.jpg" alt="ML Brown" class="w-full h-full object-cover absolute inset-0"> -->
-      <div class="photo-placeholder w-full h-full min-h-[48vh] lg:min-h-screen">
-        [PHOTO: Professional headshot of ML Brown]
-      </div>
+      <!-- Official headshot (Penn State College of Education) -->
+      <img src="https://psu-gatsby-files-prod.s3.amazonaws.com/s3fs-public/styles/4_3_1500w/public/2026/04/headshot.jpg?h=197483aa&amp;itok=zLTgGLez"
+           alt="Portrait of Master Leon (ML) Brown smiling in a navy Penn State quarter-zip"
+           class="absolute inset-0 w-full h-full object-cover">
+      <!-- Top scrim keeps the fixed nav legible over the light photo -->
+      <div class="absolute inset-x-0 top-0 h-32 bg-linear-to-b from-black/70 to-transparent"></div>
+      <p class="absolute bottom-3 left-4 z-10 text-[0.55rem] tracking-[0.15em] uppercase text-white/40">
+        Photo provided to Penn State College of Education · All Rights Reserved
+      </p>
       <!-- Subtle gradient so overlapping name stays legible on desktop -->
       <div class="hidden lg:block absolute inset-y-0 right-0 w-40 bg-linear-to-l from-charcoal to-transparent"></div>
     </div>
@@ -494,21 +498,24 @@
         <p class="eyebrow mb-6">Fellowships &amp; Honors</p>
       </div>
       <div class="grid md:grid-cols-3 gap-px bg-[#2a2a2a] border border-[#2a2a2a] mb-24">
-        <div class="fade-up bg-section p-8 md:p-10 hover:bg-charcoal transition-colors duration-500 group">
+        <a href="https://healthpolicyresearchscholars.org" target="_blank" rel="noopener"
+           class="fade-up bg-section p-8 md:p-10 hover:bg-charcoal transition-colors duration-500 group">
           <p class="font-serif italic text-gold text-sm mb-5">No. 1</p>
           <p class="font-serif text-white text-xl font-semibold leading-snug mb-3 group-hover:text-gold transition-colors">Robert Wood Johnson Foundation</p>
           <p class="text-sm leading-relaxed">Health Policy Research Scholar</p>
-        </div>
-        <div class="fade-up fade-delay-1 bg-section p-8 md:p-10 hover:bg-charcoal transition-colors duration-500 group">
+        </a>
+        <a href="https://sites.psu.edu/sacred/" target="_blank" rel="noopener"
+           class="fade-up fade-delay-1 bg-section p-8 md:p-10 hover:bg-charcoal transition-colors duration-500 group">
           <p class="font-serif italic text-gold text-sm mb-5">No. 2</p>
           <p class="font-serif text-white text-xl font-semibold leading-snug mb-3 group-hover:text-gold transition-colors">U.S. Dept. of Education (OSEP)</p>
           <p class="text-sm leading-relaxed">Project SACRED Scholar</p>
-        </div>
-        <div class="fade-up fade-delay-2 bg-section p-8 md:p-10 hover:bg-charcoal transition-colors duration-500 group">
+        </a>
+        <a href="https://www.lsac.org/plus" target="_blank" rel="noopener"
+           class="fade-up fade-delay-2 bg-section p-8 md:p-10 hover:bg-charcoal transition-colors duration-500 group">
           <p class="font-serif italic text-gold text-sm mb-5">No. 3</p>
           <p class="font-serif text-white text-xl font-semibold leading-snug mb-3 group-hover:text-gold transition-colors">LSAC PLUS Guided Journey Program</p>
           <p class="text-sm leading-relaxed">2026–2027 Cohort</p>
-        </div>
+        </a>
       </div>
 
       <!-- Publications -->
@@ -587,6 +594,8 @@
                 <p class="text-gold text-[0.65rem] uppercase tracking-[0.3em] mb-2">June 2026</p>
                 <p class="font-serif text-white text-lg font-medium leading-relaxed">&ldquo;Beyond the Diagnosis: Fathers and Father Figures&rdquo; Panel</p>
                 <p class="text-sm mt-1">Alpha Kappa Alpha Sorority (AEH Omega Chapter) · Zoom</p>
+                <a href="https://www.instagram.com/p/DY5OFkAE56u/" target="_blank" rel="noopener"
+                   class="text-[0.65rem] uppercase tracking-[0.2em] text-gold hover:text-white transition-colors inline-block mt-2">View on Instagram &rarr;</a>
               </div>
               <div class="timeline-item">
                 <p class="text-gold text-[0.65rem] uppercase tracking-[0.3em] mb-2">May 2026</p>
@@ -670,7 +679,7 @@
             representation in children&rsquo;s literature for families who have too often been rendered invisible.
           </p>
           <div>
-            <a href="#" class="btn-gold">Learn More <span class="btn-arrow">&rarr;</span></a>
+            <a href="https://www.psu.edu/news/education/story/college-education-news-may-27-2026" target="_blank" rel="noopener" class="btn-gold">Learn More <span class="btn-arrow">&rarr;</span></a>
           </div>
         </div>
       </div>
@@ -690,17 +699,26 @@
           </p>
           <p class="text-sm mt-auto">Read the article <span class="text-gold">&rarr;</span></p>
         </a>
-        <!-- Placeholder press cards -->
-        <div class="fade-up fade-delay-1 bg-section p-8 md:p-10 flex flex-col">
-          <p class="text-gold uppercase tracking-[0.3em] text-[0.65rem] mb-6">Press Feature</p>
-          <p class="font-serif text-white text-xl leading-snug mb-6">[Placeholder: Upcoming press feature]</p>
-          <p class="text-sm mt-auto italic">Coming soon</p>
-        </div>
-        <div class="fade-up fade-delay-2 bg-section p-8 md:p-10 flex flex-col">
-          <p class="text-gold uppercase tracking-[0.3em] text-[0.65rem] mb-6">Media Appearance</p>
-          <p class="font-serif text-white text-xl leading-snug mb-6">[Placeholder: Podcast / interview feature]</p>
-          <p class="text-sm mt-auto italic">Coming soon</p>
-        </div>
+        <!-- Catalyst Creators Scholarship coverage -->
+        <a href="https://www.psu.edu/news/education/story/college-education-news-may-27-2026"
+           target="_blank" rel="noopener"
+           class="fade-up fade-delay-1 group bg-section hover:bg-charcoal transition-colors duration-500 p-8 md:p-10 flex flex-col">
+          <p class="text-gold uppercase tracking-[0.3em] text-[0.65rem] mb-6">Penn State College of Education News</p>
+          <p class="font-serif text-white text-xl leading-snug mb-6 group-hover:text-gold transition-colors">
+            Catalyst Creators Scholarship — children&rsquo;s book project featured
+          </p>
+          <p class="text-sm mt-auto">Read the article <span class="text-gold">&rarr;</span></p>
+        </a>
+        <!-- Fox Graduate School video feature -->
+        <a href="https://www.instagram.com/reel/DYAOtm7iJL8/"
+           target="_blank" rel="noopener"
+           class="fade-up fade-delay-2 group bg-section hover:bg-charcoal transition-colors duration-500 p-8 md:p-10 flex flex-col">
+          <p class="text-gold uppercase tracking-[0.3em] text-[0.65rem] mb-6">Fox Graduate School</p>
+          <p class="font-serif text-white text-xl leading-snug mb-6 group-hover:text-gold transition-colors">
+            &ldquo;A Day in the Life&rdquo; — video feature following ML through his doctoral work
+          </p>
+          <p class="text-sm mt-auto">Watch the reel <span class="text-gold">&rarr;</span></p>
+        </a>
       </div>
     </div>
   </section>
@@ -730,9 +748,13 @@
             A 501(c)(3) nonprofit dedicated to promoting legacy, education, and community empowerment
             in the African American community through mentoring, scholarship, arts, and advocacy.
           </p>
-          <a href="https://www.dsdlegacyfoundation.com" target="_blank" rel="noopener" class="btn-outline">
-            Visit the Foundation <span class="btn-arrow">&rarr;</span>
-          </a>
+          <div class="flex flex-wrap items-center gap-x-8 gap-y-4">
+            <a href="https://www.dsdlegacyfoundation.com" target="_blank" rel="noopener" class="btn-outline">
+              Visit the Foundation <span class="btn-arrow">&rarr;</span>
+            </a>
+            <a href="https://www.dsdlegacyfoundation.com/meet-ceo-and-board-of-trustees" target="_blank" rel="noopener"
+               class="text-[0.65rem] uppercase tracking-[0.2em] text-gold hover:text-white transition-colors">Meet the Board &rarr;</a>
+          </div>
         </div>
 
         <!-- Beyond the Diagnosis -->
@@ -746,6 +768,12 @@
             a community conversation focused on Black families navigating autism and intellectual
             and developmental disabilities (IDD).
           </p>
+          <div class="flex flex-wrap items-center gap-x-8 gap-y-4 mb-10">
+            <a href="https://www.instagram.com/p/DY5OFkAE56u/" target="_blank" rel="noopener"
+               class="text-[0.65rem] uppercase tracking-[0.2em] text-gold hover:text-white transition-colors">Panel Highlights &rarr;</a>
+            <a href="https://www.instagram.com/p/DZpknZGujCq/" target="_blank" rel="noopener"
+               class="text-[0.65rem] uppercase tracking-[0.2em] text-gold hover:text-white transition-colors">Session 3 Details &rarr;</a>
+          </div>
           <div class="photo-placeholder w-full h-40">
             [PHOTO: Beyond the Diagnosis panel event]
           </div>
