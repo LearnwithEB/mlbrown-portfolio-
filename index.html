@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Master Leon (ML) Brown — Doctoral Candidate · Researcher · Advocate · Author</title>
+  <meta name="description" content="ML Brown is a doctoral candidate in Special Education at Penn State University, advancing equity in special education by centering the voices of Black neurodivergent youth.">
+
+  <!-- ============================================================
+       FONTS — Playfair Display (headings) + Inter (body)
+       ============================================================ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- ============================================================
+       TAILWIND CSS (CDN) — utility classes, no build step needed
+       ============================================================ -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    /* Tailwind theme customization — colors and fonts for the whole site.
+       TO CHANGE THE ACCENT COLOR: edit the --color-gold value below. */
+    @theme {
+      --color-charcoal: #0d0d0d;   /* main background */
+      --color-section:  #1a1a1a;   /* alternating section background */
+      --color-gold:     #c9a84c;   /* accent (buttons, hovers, underlines) */
+      --color-body:     #c0c0c0;   /* body copy gray */
+      --font-serif: "Playfair Display", Georgia, serif;
+      --font-sans: "Inter", system-ui, sans-serif;
+    }
+  </style>
+
+  <!-- ============================================================
+       CUSTOM CSS — editorial typography, animations, flourishes
+       (modeled on the Webflow "Presence" template aesthetic)
+       ============================================================ -->
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: #0d0d0d;
+      color: #c0c0c0;
+      font-family: 'Inter', system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+    ::selection { background: #c9a84c; color: #0d0d0d; }
+
+    /* ---- Oversized editorial display headings ---- */
+    .display-name {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      font-size: clamp(3.2rem, 8.5vw, 8rem);
+    }
+    .display-heading {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 700;
+      line-height: 1.02;
+      letter-spacing: -0.015em;
+      font-size: clamp(2.4rem, 5.5vw, 4.75rem);
+    }
+
+    /* ---- Eyebrow label: "01 — Research" with hairline rule ---- */
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: #c9a84c;
+      font-size: 0.7rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+    }
+    .eyebrow::after {
+      content: '';
+      flex: 0 0 64px;
+      height: 1px;
+      background-color: #c9a84c;
+      opacity: 0.6;
+    }
+
+    /* ---- Fade-up animation (triggered by Intersection Observer) ---- */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-delay-1 { transition-delay: 0.12s; }
+    .fade-delay-2 { transition-delay: 0.24s; }
+    .fade-delay-3 { transition-delay: 0.36s; }
+
+    /* ---- Gold section divider ---- */
+    hr.gold-rule {
+      border: none;
+      height: 1px;
+      max-width: 180px;
+      margin: 0 auto;
+      background: linear-gradient(to right, transparent, #c9a84c, transparent);
+    }
+
+    /* ---- Navigation: transparent over hero, dark once scrolled ---- */
+    #navbar {
+      transition: background-color 0.4s ease, box-shadow 0.4s ease, backdrop-filter 0.4s ease;
+      background-color: transparent;
+    }
+    #navbar.scrolled {
+      background-color: rgba(13, 13, 13, 0.9);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 1px 0 rgba(201, 168, 76, 0.22);
+    }
+
+    /* ---- Nav link underline hover effect ---- */
+    .nav-link {
+      position: relative;
+      color: #ffffff;
+      transition: color 0.3s ease;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: -4px;
+      width: 0; height: 1px;
+      background-color: #c9a84c;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover { color: #c9a84c; }
+    .nav-link:hover::after { width: 100%; }
+
+    /* ---- Buttons: uppercase micro-label with arrow, editorial style ---- */
+    .btn-gold, .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 1.05rem 2.1rem;
+      transition: background-color 0.35s ease, color 0.35s ease, transform 0.35s ease;
+    }
+    .btn-gold { background-color: #c9a84c; color: #0d0d0d; }
+    .btn-gold:hover { background-color: #e0c26a; transform: translateY(-2px); }
+    .btn-outline { border: 1px solid rgba(201, 168, 76, 0.7); color: #c9a84c; }
+    .btn-outline:hover { background-color: #c9a84c; color: #0d0d0d; transform: translateY(-2px); }
+    .btn-arrow { transition: transform 0.35s ease; }
+    .btn-gold:hover .btn-arrow, .btn-outline:hover .btn-arrow { transform: translateX(4px); }
+
+    /* ---- Marquee: infinite scrolling text strip (Presence signature) ---- */
+    .marquee {
+      overflow: hidden;
+      white-space: nowrap;
+      border-top: 1px solid rgba(201, 168, 76, 0.25);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.25);
+      padding: 1.4rem 0;
+    }
+    .marquee-track {
+      display: inline-block;
+      animation: marquee 32s linear infinite;
+    }
+    .marquee span {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-size: clamp(1.3rem, 2.6vw, 2rem);
+      color: #ffffff;
+      margin: 0 1.6rem;
+    }
+    .marquee .dot { color: #c9a84c; font-style: normal; }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ---- Speaking topics: large numbered rows with hover reveal ---- */
+    .topic-row {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      padding: 1.8rem 0.5rem;
+      border-bottom: 1px solid #2a2a2a;
+      cursor: default;
+      transition: background-color 0.35s ease, padding-left 0.35s ease, border-color 0.35s ease;
+    }
+    .topic-row:first-child { border-top: 1px solid #2a2a2a; }
+    .topic-row:hover { background-color: #161616; padding-left: 1.25rem; border-color: rgba(201,168,76,0.5); }
+    .topic-num {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      color: #c9a84c;
+      font-size: 0.95rem;
+      letter-spacing: 0.1em;
+      flex-shrink: 0;
+    }
+    .topic-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      color: #ffffff;
+      font-weight: 600;
+      font-size: clamp(1.25rem, 2.4vw, 1.8rem);
+      line-height: 1.25;
+      transition: color 0.35s ease;
+    }
+    .topic-row:hover .topic-title { color: #c9a84c; }
+    .topic-arrow {
+      margin-left: auto;
+      color: #c9a84c;
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+      flex-shrink: 0;
+    }
+    .topic-row:hover .topic-arrow { opacity: 1; transform: translateX(0); }
+
+    /* ---- Dark form fields ---- */
+    .form-field {
+      width: 100%;
+      background-color: transparent;
+      border: none;
+      border-bottom: 1px solid #333333;
+      color: #ffffff;
+      padding: 0.9rem 0.25rem;
+      font-size: 0.95rem;
+      transition: border-color 0.3s ease;
+    }
+    .form-field:focus { outline: none; border-color: #c9a84c; }
+    .form-field::placeholder { color: #666666; letter-spacing: 0.02em; }
+    select.form-field { appearance: none; }
+    select.form-field option { background-color: #1a1a1a; }
+
+    /* ---- Photo placeholder boxes ---- */
+    .photo-placeholder {
+      background-color: #1f1f1f;
+      background-image: linear-gradient(135deg, #1f1f1f 0%, #171717 100%);
+      border: 1px dashed #3a3a3a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #ffffff;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 1rem;
+    }
+
+    /* ---- Timeline (Past Engagements) ---- */
+    .timeline-item { position: relative; padding-left: 2rem; }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0.45rem;
+      width: 9px; height: 9px;
+      background-color: #c9a84c;
+      border-radius: 9999px;
+    }
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      left: 4px; top: 1.3rem; bottom: -1.6rem;
+      width: 1px;
+      background-color: #2e2e2e;
+    }
+    .timeline-item:last-child::after { display: none; }
+
+    /* ---- Gold bullet list (Publications) ---- */
+    .gold-bullets li { position: relative; padding-left: 1.6rem; }
+    .gold-bullets li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0.6rem;
+      width: 7px; height: 7px;
+      background-color: #c9a84c;
+    }
+
+    /* ---- Giant ghost text behind sections (editorial flourish) ---- */
+    .ghost-word {
+      position: absolute;
+      top: -0.5rem;
+      right: -1rem;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 800;
+      font-size: clamp(5rem, 14vw, 13rem);
+      line-height: 1;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(255, 255, 255, 0.06);
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    /* ---- Back to Top button ---- */
+    #backToTop {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      transform: translateY(10px);
+    }
+    #backToTop.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+    /* ---- Mobile menu slide ---- */
+    #mobileMenu { transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
+    #mobileMenu.open { transform: translateX(0); }
+
+    /* ---- Scroll-down indicator on hero ---- */
+    .scroll-indicator { animation: bounce 2.2s ease-in-out infinite; }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(8px); }
+    }
+  </style>
+</head>
+
+<body class="bg-charcoal text-body antialiased">
+
+  <!-- ============================================================
+       NAVIGATION BAR (fixed, transparent over hero, dark on scroll)
+       ============================================================ -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-5 flex items-center justify-between">
+      <!-- Logo / monogram -->
+      <a href="#home" class="font-serif text-2xl font-bold text-white tracking-wide">
+        ML<span class="text-gold">.</span>Brown
+      </a>
+
+      <!-- Desktop links -->
+      <div class="hidden md:flex items-center gap-8 text-[0.7rem] font-medium tracking-[0.22em] uppercase">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#research" class="nav-link">Research</a>
+        <a href="#speaking" class="nav-link">Speaking</a>
+        <a href="#creative" class="nav-link">Creative Work</a>
+        <a href="#community" class="nav-link">Community</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <a href="#speaking" class="btn-gold py-2.5! px-5!">Book Me</a>
+      </div>
+
+      <!-- Hamburger button (mobile only) -->
+      <button id="hamburger" class="md:hidden text-white focus:outline-none" aria-label="Open menu" aria-expanded="false">
+        <svg id="iconOpen" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7h16M4 12h16M4 17h16"/>
+        </svg>
+        <svg id="iconClose" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile slide-in menu -->
+  <div id="mobileMenu" class="fixed inset-y-0 right-0 z-40 w-80 bg-section md:hidden flex flex-col pt-28 px-10 gap-7 shadow-2xl">
+    <p class="text-gold text-[0.65rem] tracking-[0.35em] uppercase mb-2">Menu</p>
+    <a href="#home" class="mobile-link font-serif text-2xl text-white hover:text-gold transition-colors">Home</a>
+    <a href="#research" class="mobile-link font-serif text-2xl text-white hover:text-gold transition-colors">Research</a>
+    <a href="#speaking" class="mobile-link font-serif text-2xl text-white hover:text-gold transition-colors">Speaking</a>
+    <a href="#creative" class="mobile-link font-serif text-2xl text-white hover:text-gold transition-colors">Creative Work</a>
+    <a href="#community" class="mobile-link font-serif text-2xl text-white hover:text-gold transition-colors">Community</a>
+    <a href="#contact" class="mobile-link font-serif text-2xl text-white hover:text-gold transition-colors">Contact</a>
+    <a href="#speaking" class="btn-gold mobile-link justify-center mt-6">Book Me to Speak</a>
+  </div>
+
+  <!-- ============================================================
+       SECTION 1 — HOME / HERO
+       Split-screen: portrait photo (left) + oversized editorial
+       name treatment (right), in the style of the Presence template
+       ============================================================ -->
+  <section id="home" class="relative min-h-screen flex flex-col lg:flex-row">
+    <!-- Left: portrait photo placeholder -->
+    <div class="lg:w-[45%] min-h-[48vh] lg:min-h-screen relative">
+      <!-- TO ADD THE REAL PHOTO: replace this div with
+           <img src="your-photo.jpg" alt="ML Brown" class="w-full h-full object-cover absolute inset-0"> -->
+      <div class="photo-placeholder w-full h-full min-h-[48vh] lg:min-h-screen">
+        [PHOTO: Professional headshot of ML Brown]
+      </div>
+      <!-- Subtle gradient so overlapping name stays legible on desktop -->
+      <div class="hidden lg:block absolute inset-y-0 right-0 w-40 bg-linear-to-l from-charcoal to-transparent"></div>
+    </div>
+
+    <!-- Right: name, title, tagline, CTAs -->
+    <div class="lg:w-[55%] flex items-center bg-charcoal relative">
+      <!-- Ghost word flourish -->
+      <span class="ghost-word hidden lg:block" aria-hidden="true">Speaker</span>
+
+      <div class="px-8 py-20 lg:pl-0 lg:pr-16 xl:pr-24 relative z-10 fade-up w-full">
+        <p class="eyebrow mb-8 lg:pl-16 xl:pl-20">Scholar · Speaker · Advocate</p>
+
+        <!-- Oversized name — pulled left so it overlaps the portrait on desktop -->
+        <h1 class="display-name text-white mb-8 lg:-ml-24 xl:-ml-32">
+          Master Leon<br>
+          <span class="italic font-medium text-gold">(ML)</span> Brown
+        </h1>
+
+        <div class="lg:pl-16 xl:pl-20 max-w-xl">
+          <p class="text-white text-base md:text-lg font-light tracking-[0.08em] uppercase mb-6">
+            Doctoral Candidate in Special Education&ensp;·&ensp;Researcher&ensp;·&ensp;Advocate&ensp;·&ensp;Author
+          </p>
+          <p class="font-serif italic text-body text-xl md:text-2xl leading-relaxed mb-10">
+            &ldquo;Advancing equity in special education by centering the voices of Black neurodivergent youth.&rdquo;
+          </p>
+
+          <!-- CTA buttons -->
+          <div class="flex flex-col sm:flex-row gap-4 mb-14">
+            <a href="#research" class="btn-gold justify-center">View My Research <span class="btn-arrow">&rarr;</span></a>
+            <a href="#speaking" class="btn-outline justify-center">Book Me to Speak <span class="btn-arrow">&rarr;</span></a>
+          </div>
+
+          <!-- Affiliation badges -->
+          <div class="flex flex-wrap items-center gap-x-5 gap-y-3 text-[0.65rem] uppercase tracking-[0.2em] text-gray-500">
+            <span class="hover:text-gold transition-colors">Penn State University</span>
+            <span class="text-gold">|</span>
+            <span class="hover:text-gold transition-colors">Robert Wood Johnson Foundation</span>
+            <span class="text-gold">|</span>
+            <span class="hover:text-gold transition-colors">LSAC PLUS</span>
+            <span class="text-gold">|</span>
+            <span class="hover:text-gold transition-colors">DSD Legacy Foundation</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll-down indicator -->
+      <a href="#research" class="scroll-indicator hidden lg:flex absolute bottom-8 right-10 items-center gap-3 text-[0.6rem] tracking-[0.3em] uppercase text-gray-500 hover:text-gold transition-colors">
+        Scroll
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MARQUEE STRIP — scrolling editorial text (Presence signature)
+       ============================================================ -->
+  <div class="marquee bg-charcoal" aria-hidden="true">
+    <div class="marquee-track">
+      <!-- The phrase list is doubled so the loop is seamless -->
+      <span>Equity</span><span class="dot">✦</span>
+      <span>Neurodiversity</span><span class="dot">✦</span>
+      <span>Advocacy</span><span class="dot">✦</span>
+      <span>Research</span><span class="dot">✦</span>
+      <span>Representation</span><span class="dot">✦</span>
+      <span>Justice</span><span class="dot">✦</span>
+      <span>Equity</span><span class="dot">✦</span>
+      <span>Neurodiversity</span><span class="dot">✦</span>
+      <span>Advocacy</span><span class="dot">✦</span>
+      <span>Research</span><span class="dot">✦</span>
+      <span>Representation</span><span class="dot">✦</span>
+      <span>Justice</span><span class="dot">✦</span>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 2 — ABOUT / RESEARCH
+       ============================================================ -->
+  <section id="research" class="bg-section py-24 md:py-36 relative overflow-hidden">
+    <span class="ghost-word" aria-hidden="true">Research</span>
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10 relative z-10">
+      <!-- Section header -->
+      <div class="fade-up mb-16 md:mb-20">
+        <p class="eyebrow mb-6">01 — About ML</p>
+        <h2 class="display-heading text-white">Research <span class="italic font-medium text-gold">&amp;</span> Scholarship</h2>
+      </div>
+
+      <!-- Two-column: bio (left) + dissertation card (right) -->
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 mb-24">
+        <!-- Bio -->
+        <div class="fade-up">
+          <p class="text-lg leading-[1.9] mb-8">
+            ML Brown is a doctoral candidate in Special Education at the Penn State College of Education,
+            where his research centers on the intersection of race, disability, and educational equity.
+            As a non-traditional and neurodivergent scholar, he brings lived experience to his academic work,
+            examining how teacher perceptions and implicit bias shape the educational trajectories of Black
+            students labeled with Emotional and Behavioral Disorders (EBD). He also serves as an Adjunct
+            Professor at Delaware State University.
+          </p>
+          <!-- Optional secondary photo placeholder -->
+          <div class="photo-placeholder w-full h-56">
+            [PHOTO: ML Brown presenting research or teaching]
+          </div>
+        </div>
+
+        <!-- Current Dissertation Study card -->
+        <div class="fade-up fade-delay-1">
+          <div class="bg-charcoal border-l-2 border-gold p-8 md:p-12 h-full">
+            <p class="text-gold uppercase tracking-[0.3em] text-[0.65rem] mb-6">IRB-Approved Dissertation Research</p>
+            <h3 class="font-serif text-white text-2xl md:text-[2rem] font-semibold leading-[1.25] mb-6">
+              The Miseducation of Black Boys with EBD: Black Parental Fears of Teacher Perceptions and Implicit Bias
+            </h3>
+            <p class="leading-[1.85]">
+              This qualitative study examines how Black parents of boys labeled with EBD perceive and
+              navigate teacher bias within special education systems.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fellowships & Honors -->
+      <div class="fade-up mb-10">
+        <p class="eyebrow mb-6">Fellowships &amp; Honors</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-px bg-[#2a2a2a] border border-[#2a2a2a] mb-24">
+        <div class="fade-up bg-section p-8 md:p-10 hover:bg-charcoal transition-colors duration-500 group">
+          <p class="font-serif italic text-gold text-sm mb-5">No. 1</p>
+          <p class="font-serif text-white text-xl font-semibold leading-snug mb-3 group-hover:text-gold transition-colors">Robert Wood Johnson Foundation</p>
+          <p class="text-sm leading-relaxed">Health Policy Research Scholar</p>
+        </div>
+        <div class="fade-up fade-delay-1 bg-section p-8 md:p-10 hover:bg-charcoal transition-colors duration-500 group">
+          <p class="font-serif italic text-gold text-sm mb-5">No. 2</p>
+          <p class="font-serif text-white text-xl font-semibold leading-snug mb-3 group-hover:text-gold transition-colors">U.S. Dept. of Education (OSEP)</p>
+          <p class="text-sm leading-relaxed">Project SACRED Scholar</p>
+        </div>
+        <div class="fade-up fade-delay-2 bg-section p-8 md:p-10 hover:bg-charcoal transition-colors duration-500 group">
+          <p class="font-serif italic text-gold text-sm mb-5">No. 3</p>
+          <p class="font-serif text-white text-xl font-semibold leading-snug mb-3 group-hover:text-gold transition-colors">LSAC PLUS Guided Journey Program</p>
+          <p class="text-sm leading-relaxed">2026–2027 Cohort</p>
+        </div>
+      </div>
+
+      <!-- Publications -->
+      <div class="fade-up">
+        <p class="eyebrow mb-10">Publications &amp; Presentations</p>
+        <ul class="gold-bullets space-y-7 max-w-4xl">
+          <li class="leading-[1.85]">
+            Anthony, N., Palmer, J., Caruthers, C., Pearson, J., <span class="text-white font-medium">Brown, M.</span>, &amp; Taylor, J.C. (2025).
+            &ldquo;Pride and Prevalence: A Commentary on Supporting Black Autistic Youth in an Age of Anti-Science
+            and Anti-Diversity Rhetoric and Practice.&rdquo;
+            <em class="text-white">Multiple Voices: Disability, Race, and Language Intersections in Special Education</em>, 25(1), 1–13.
+          </li>
+          <li class="leading-[1.85]">
+            2026 Penn State Graduate Exhibition — Research Poster Presentation
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="gold-rule">
+
+  <!-- ============================================================
+       SECTION 3 — SPEAKING & BOOKING
+       ============================================================ -->
+  <section id="speaking" class="bg-charcoal py-24 md:py-36 relative overflow-hidden">
+    <span class="ghost-word" aria-hidden="true">Speaking</span>
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10 relative z-10">
+      <!-- Section header -->
+      <div class="fade-up mb-10 md:mb-12">
+        <p class="eyebrow mb-6">02 — Engagements</p>
+        <h2 class="display-heading text-white">Speaking <span class="italic font-medium text-gold">&amp;</span> Booking</h2>
+      </div>
+
+      <p class="fade-up text-lg leading-[1.9] max-w-3xl mb-16 md:mb-20">
+        ML Brown is available for keynote addresses, panel discussions, academic lectures, and community
+        conversations on topics including special education equity, neurodiversity in Black communities,
+        disability policy, and the intersection of race and educational law.
+      </p>
+
+      <div class="grid lg:grid-cols-2 gap-16 lg:gap-24">
+        <!-- Left column: topics + past engagements -->
+        <div>
+          <!-- Topics — large numbered editorial rows -->
+          <div class="fade-up mb-16">
+            <p class="eyebrow mb-8">Topics He Speaks On</p>
+            <div>
+              <div class="topic-row">
+                <span class="topic-num">01</span>
+                <span class="topic-title">The Miseducation of Black Boys with EBD</span>
+                <span class="topic-arrow">&rarr;</span>
+              </div>
+              <div class="topic-row">
+                <span class="topic-num">02</span>
+                <span class="topic-title">Black Neurodivergent Youth &amp; Systemic Inequity</span>
+                <span class="topic-arrow">&rarr;</span>
+              </div>
+              <div class="topic-row">
+                <span class="topic-num">03</span>
+                <span class="topic-title">Race, Disability, and Educational Policy</span>
+                <span class="topic-arrow">&rarr;</span>
+              </div>
+              <div class="topic-row">
+                <span class="topic-num">04</span>
+                <span class="topic-title">Fathers &amp; Families Beyond the Diagnosis</span>
+                <span class="topic-arrow">&rarr;</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Past engagements timeline -->
+          <div class="fade-up">
+            <p class="eyebrow mb-8">Past Engagements</p>
+            <div class="space-y-9">
+              <div class="timeline-item">
+                <p class="text-gold text-[0.65rem] uppercase tracking-[0.3em] mb-2">June 2026</p>
+                <p class="font-serif text-white text-lg font-medium leading-relaxed">&ldquo;Beyond the Diagnosis: Fathers and Father Figures&rdquo; Panel</p>
+                <p class="text-sm mt-1">Alpha Kappa Alpha Sorority (AEH Omega Chapter) · Zoom</p>
+              </div>
+              <div class="timeline-item">
+                <p class="text-gold text-[0.65rem] uppercase tracking-[0.3em] mb-2">May 2026</p>
+                <p class="font-serif text-white text-lg font-medium leading-relaxed">Penn State Graduate Exhibition</p>
+                <p class="text-sm mt-1">Research Poster Presentation</p>
+              </div>
+              <div class="timeline-item">
+                <p class="text-gold text-[0.65rem] uppercase tracking-[0.3em] mb-2">Coming Soon</p>
+                <p class="text-sm italic">[Placeholder for additional engagements]</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right column: booking form -->
+        <div class="fade-up fade-delay-1">
+          <div class="bg-section p-8 md:p-12 border border-[#2a2a2a]">
+            <h3 class="font-serif text-white text-3xl font-semibold mb-3">Booking Inquiry</h3>
+            <p class="text-sm mb-10">Complete the form below and ML&rsquo;s team will follow up shortly.</p>
+
+            <!-- NOTE: This form is front-end only. To make it live, connect it
+                 to a service such as Formspree, Netlify Forms, or Google Forms. -->
+            <form id="bookingForm" class="space-y-7">
+              <div class="grid sm:grid-cols-2 gap-7">
+                <input type="text" name="name" class="form-field" placeholder="Name *" required>
+                <input type="text" name="organization" class="form-field" placeholder="Organization">
+              </div>
+              <div class="grid sm:grid-cols-2 gap-7">
+                <input type="email" name="email" class="form-field" placeholder="Email *" required>
+                <input type="date" name="eventDate" class="form-field" aria-label="Event Date">
+              </div>
+              <select name="eventType" class="form-field" aria-label="Event Type">
+                <option value="" disabled selected>Event Type</option>
+                <option>Keynote</option>
+                <option>Panel</option>
+                <option>Lecture</option>
+                <option>Community Event</option>
+                <option>Other</option>
+              </select>
+              <textarea name="message" rows="4" class="form-field" placeholder="Tell us about your event *" required></textarea>
+              <button type="submit" class="btn-gold w-full justify-center">Submit Booking Inquiry <span class="btn-arrow">&rarr;</span></button>
+              <p id="bookingConfirm" class="hidden text-gold text-sm text-center pt-2">
+                Thank you! Your inquiry has been received.
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="gold-rule">
+
+  <!-- ============================================================
+       SECTION 4 — CREATIVE WORK & AUTHORSHIP
+       ============================================================ -->
+  <section id="creative" class="bg-section py-24 md:py-36 relative overflow-hidden">
+    <span class="ghost-word" aria-hidden="true">Author</span>
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10 relative z-10">
+      <!-- Section header -->
+      <div class="fade-up mb-16 md:mb-20">
+        <p class="eyebrow mb-6">03 — Beyond the Academy</p>
+        <h2 class="display-heading text-white">Creative Work <span class="italic font-medium text-gold">&amp;</span> Authorship</h2>
+      </div>
+
+      <!-- Children's book feature card -->
+      <div class="fade-up grid lg:grid-cols-5 gap-10 lg:gap-14 bg-charcoal border border-[#2a2a2a] p-8 md:p-14 mb-24">
+        <!-- Book cover placeholder -->
+        <div class="lg:col-span-2">
+          <div class="photo-placeholder w-full h-80 lg:h-full min-h-[20rem]">
+            [PHOTO: Children's book cover artwork]
+          </div>
+        </div>
+        <!-- Book details -->
+        <div class="lg:col-span-3 flex flex-col justify-center">
+          <p class="text-gold uppercase tracking-[0.3em] text-[0.65rem] mb-6">Catalyst Creators Scholarship Recipient</p>
+          <h3 class="font-serif text-white text-3xl md:text-[2.6rem] font-semibold leading-[1.15] mb-6">[Book Title — Placeholder]</h3>
+          <p class="leading-[1.9] mb-10">
+            An affirming ABC-style picture book centering Black children with neurodivergence and disabilities.
+            Illustrated by Antonio &ldquo;JR&rdquo; Fuondjing. This work is part of ML&rsquo;s commitment to creating
+            representation in children&rsquo;s literature for families who have too often been rendered invisible.
+          </p>
+          <div>
+            <a href="#" class="btn-gold">Learn More <span class="btn-arrow">&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Media / Press -->
+      <div class="fade-up mb-10">
+        <p class="eyebrow mb-6">Media &amp; Press</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-px bg-[#2a2a2a] border border-[#2a2a2a]">
+        <!-- Penn State news article -->
+        <a href="https://www.psu.edu/news/education/story/doctoral-student-selected-national-law-school-preparation-program"
+           target="_blank" rel="noopener"
+           class="fade-up group bg-section hover:bg-charcoal transition-colors duration-500 p-8 md:p-10 flex flex-col">
+          <p class="text-gold uppercase tracking-[0.3em] text-[0.65rem] mb-6">Penn State News</p>
+          <p class="font-serif text-white text-xl leading-snug mb-6 group-hover:text-gold transition-colors">
+            Doctoral student selected for national law school preparation program
+          </p>
+          <p class="text-sm mt-auto">Read the article <span class="text-gold">&rarr;</span></p>
+        </a>
+        <!-- Placeholder press cards -->
+        <div class="fade-up fade-delay-1 bg-section p-8 md:p-10 flex flex-col">
+          <p class="text-gold uppercase tracking-[0.3em] text-[0.65rem] mb-6">Press Feature</p>
+          <p class="font-serif text-white text-xl leading-snug mb-6">[Placeholder: Upcoming press feature]</p>
+          <p class="text-sm mt-auto italic">Coming soon</p>
+        </div>
+        <div class="fade-up fade-delay-2 bg-section p-8 md:p-10 flex flex-col">
+          <p class="text-gold uppercase tracking-[0.3em] text-[0.65rem] mb-6">Media Appearance</p>
+          <p class="font-serif text-white text-xl leading-snug mb-6">[Placeholder: Podcast / interview feature]</p>
+          <p class="text-sm mt-auto italic">Coming soon</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="gold-rule">
+
+  <!-- ============================================================
+       SECTION 5 — COMMUNITY & ADVOCACY
+       ============================================================ -->
+  <section id="community" class="bg-charcoal py-24 md:py-36 relative overflow-hidden">
+    <span class="ghost-word" aria-hidden="true">Community</span>
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10 relative z-10">
+      <!-- Section header -->
+      <div class="fade-up mb-16 md:mb-20">
+        <p class="eyebrow mb-6">04 — Service &amp; Advocacy</p>
+        <h2 class="display-heading text-white">Community <span class="italic font-medium text-gold">Leadership</span></h2>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-8 lg:gap-10">
+        <!-- DSD Legacy Foundation -->
+        <div class="fade-up bg-section border-l-2 border-gold p-8 md:p-12">
+          <p class="text-gold uppercase tracking-[0.3em] text-[0.65rem] mb-6">Board Member &amp; Chief Unity Walk Coordinator</p>
+          <h3 class="font-serif text-white text-2xl md:text-[2rem] font-semibold leading-[1.25] mb-6">
+            D&rsquo;ymond Shant&rsquo;yl Dantzler Legacy Foundation, Inc.
+          </h3>
+          <p class="leading-[1.9] mb-10">
+            A 501(c)(3) nonprofit dedicated to promoting legacy, education, and community empowerment
+            in the African American community through mentoring, scholarship, arts, and advocacy.
+          </p>
+          <a href="https://www.dsdlegacyfoundation.com" target="_blank" rel="noopener" class="btn-outline">
+            Visit the Foundation <span class="btn-arrow">&rarr;</span>
+          </a>
+        </div>
+
+        <!-- Beyond the Diagnosis -->
+        <div class="fade-up fade-delay-1 bg-section border-l-2 border-gold p-8 md:p-12">
+          <p class="text-gold uppercase tracking-[0.3em] text-[0.65rem] mb-6">Moderator &amp; Panelist</p>
+          <h3 class="font-serif text-white text-2xl md:text-[2rem] font-semibold leading-[1.25] mb-6">
+            &ldquo;Beyond the Diagnosis&rdquo; Series
+          </h3>
+          <p class="leading-[1.9] mb-10">
+            ML serves as a moderator and panelist for the &ldquo;Beyond the Diagnosis&rdquo; series,
+            a community conversation focused on Black families navigating autism and intellectual
+            and developmental disabilities (IDD).
+          </p>
+          <div class="photo-placeholder w-full h-40">
+            [PHOTO: Beyond the Diagnosis panel event]
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="gold-rule">
+
+  <!-- ============================================================
+       SECTION 6 — CONTACT
+       ============================================================ -->
+  <section id="contact" class="bg-section py-24 md:py-36 relative overflow-hidden">
+    <span class="ghost-word" aria-hidden="true">Connect</span>
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10 relative z-10">
+      <!-- Section header — big editorial invitation -->
+      <div class="fade-up text-center mb-16 md:mb-20 max-w-4xl mx-auto">
+        <p class="eyebrow justify-center mb-6">05 — Get in Touch</p>
+        <h2 class="display-heading text-white">Connect <span class="italic font-medium text-gold">With ML</span></h2>
+        <p class="text-lg leading-[1.9] mt-8 max-w-2xl mx-auto">
+          For research collaborations, media inquiries, or community partnerships — send a note below.
+        </p>
+      </div>
+
+      <!-- Contact form -->
+      <div class="fade-up max-w-2xl mx-auto mb-16">
+        <!-- NOTE: This form is front-end only. Connect it to a form service to receive messages. -->
+        <form id="contactForm" class="space-y-7">
+          <div class="grid sm:grid-cols-2 gap-7">
+            <input type="text" name="name" class="form-field" placeholder="Name *" required>
+            <input type="email" name="email" class="form-field" placeholder="Email *" required>
+          </div>
+          <input type="text" name="subject" class="form-field" placeholder="Subject">
+          <textarea name="message" rows="4" class="form-field" placeholder="Your message *" required></textarea>
+          <button type="submit" class="btn-gold w-full justify-center">Send Message <span class="btn-arrow">&rarr;</span></button>
+          <p id="contactConfirm" class="hidden text-gold text-sm text-center pt-2">
+            Thank you! Your message has been received.
+          </p>
+        </form>
+      </div>
+
+      <!-- Profile links -->
+      <div class="fade-up flex flex-wrap justify-center items-center gap-x-10 gap-y-4 text-[0.7rem] uppercase tracking-[0.25em] mb-14">
+        <a href="#" class="nav-link">LinkedIn</a>
+        <a href="#" class="nav-link">Google Scholar</a>
+        <a href="#" class="nav-link">Penn State Profile</a>
+        <a href="#" class="nav-link">ResearchGate</a>
+      </div>
+
+      <!-- CV download -->
+      <div class="fade-up text-center">
+        <a href="#" class="btn-outline">Download CV (PDF) <span class="btn-arrow">&darr;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="bg-charcoal border-t border-[#2a2a2a] py-12">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10 flex flex-col md:flex-row items-center justify-between gap-6">
+      <p class="font-serif text-white text-2xl">ML<span class="text-gold">.</span>Brown</p>
+      <p class="text-[0.65rem] tracking-[0.25em] uppercase text-gray-500 text-center">
+        &copy; 2026 Master Leon (ML) Brown &middot; All Rights Reserved
+      </p>
+      <a href="#home" class="text-[0.65rem] tracking-[0.25em] uppercase text-gray-500 hover:text-gold transition-colors">
+        Back to Top &uarr;
+      </a>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       BACK TO TOP BUTTON (floating)
+       ============================================================ -->
+  <button id="backToTop" aria-label="Back to top"
+          class="fixed bottom-6 right-6 z-50 bg-gold text-charcoal w-12 h-12 flex items-center justify-center shadow-lg hover:bg-[#e0c26a]">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
+    </svg>
+  </button>
+
+  <!-- ============================================================
+       JAVASCRIPT — nav behavior, mobile menu, scroll animations
+       ============================================================ -->
+  <script>
+    // ---------- Sticky nav: transparent over hero, dark on scroll ----------
+    const navbar = document.getElementById('navbar');
+    const backToTop = document.getElementById('backToTop');
+
+    function onScroll() {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+      backToTop.classList.toggle('show', window.scrollY > 500);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // set initial state
+
+    // ---------- Back to Top ----------
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ---------- Mobile hamburger menu ----------
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const iconOpen = document.getElementById('iconOpen');
+    const iconClose = document.getElementById('iconClose');
+
+    function toggleMenu(forceClose = false) {
+      const isOpen = mobileMenu.classList.contains('open');
+      const open = forceClose ? false : !isOpen;
+      mobileMenu.classList.toggle('open', open);
+      iconOpen.classList.toggle('hidden', open);
+      iconClose.classList.toggle('hidden', !open);
+      hamburger.setAttribute('aria-expanded', open);
+    }
+    hamburger.addEventListener('click', () => toggleMenu());
+    // Close the menu when a mobile link is tapped
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => toggleMenu(true));
+    });
+
+    // ---------- Fade-up animations via Intersection Observer ----------
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target); // animate only once
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // ---------- Forms (front-end only): show a confirmation message ----------
+    // To make these forms actually send email, connect them to a service
+    // like Formspree (https://formspree.io) — replace the submit handler
+    // with a real form action URL.
+    function handleForm(formId, confirmId) {
+      const form = document.getElementById(formId);
+      const confirm = document.getElementById(confirmId);
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        confirm.classList.remove('hidden');
+        form.reset();
+        setTimeout(() => confirm.classList.add('hidden'), 6000);
+      });
+    }
+    handleForm('bookingForm', 'bookingConfirm');
+    handleForm('contactForm', 'contactConfirm');
+  </script>
+</body>
+</html>
