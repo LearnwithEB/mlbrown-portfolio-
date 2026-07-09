@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<!-- ============================================================
+     CONTACT.HTML — Connect With ML
+     ============================================================ -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — ML Brown</title>
+  <meta name="description" content="Connect with ML Brown for speaking inquiries, research collaborations, media requests, or general correspondence.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <div class="navbar">
+    <button id="menuButton" class="menu-button" aria-label="Open menu" aria-expanded="false">
+      <span class="menu-line"></span>
+      <span class="menu-line"></span>
+      <span class="menu-line"></span>
+    </button>
+  </div>
+  <div id="navOverlay" class="nav-overlay"></div>
+  <nav id="navPanel" class="nav-panel" aria-label="Site navigation">
+    <p class="nav-panel-label">ML Brown — Menu</p>
+    <a href="index.html">Home</a>
+    <a href="public-speaking.html">Public Speaking</a>
+    <a href="research.html">Research</a>
+    <a href="creative-work.html">Creative Work</a>
+    <a href="community.html">Community</a>
+    <a href="about.html">About</a>
+    <a href="contact.html" class="current">Contact</a>
+    <p class="nav-panel-footer">© 2026 ML Brown</p>
+  </nav>
+
+  <!-- ========== LEFT PANEL ========== -->
+  <div class="main-photo-wrapper">
+    <img class="main-photo"
+         src="images/headshot.jpg"
+         alt="Portrait of ML Brown smiling in a navy Penn State quarter-zip">
+    <div class="photo-area-scrim"></div>
+    <p class="photo-credit">Photo provided to Penn State College of Education</p>
+  </div>
+  <span class="vertical-label">ML Brown</span>
+
+  <!-- ========== RIGHT PANEL ========== -->
+  <main class="content-wrapper inner-page">
+    <div class="breadcrumb-bar">
+      <a href="index.html">Home</a> / Contact
+    </div>
+
+    <div class="page-title">
+      <h1 class="title-huge">Connect <span class="italic-text">With ML</span></h1>
+      <h2 class="large-text">
+        For speaking inquiries, research collaborations, media requests, or general
+        correspondence.
+      </h2>
+    </div>
+
+    <!-- ========== CONTACT FORM ========== -->
+    <div class="section">
+      <p class="accent-label">Send a Message:</p>
+      <!-- Front-end only; see script.js for how to connect a form service -->
+      <form class="form-grid" data-confirm="contactConfirm">
+        <input type="text" name="name" class="form-field" placeholder="Name *" required>
+        <input type="email" name="email" class="form-field" placeholder="Email *" required>
+        <input type="text" name="subject" class="form-field full-width" placeholder="Subject">
+        <textarea name="message" class="form-field full-width" placeholder="Your message *" required></textarea>
+        <div class="full-width">
+          <button type="submit" class="submit-button">Send Message</button>
+          <p id="contactConfirm" class="form-confirm">Thank you — your message has been received.</p>
+        </div>
+      </form>
+    </div>
+
+    <!-- ========== PROFILE LINKS ========== -->
+    <div class="section">
+      <p class="accent-label">Profiles:</p>
+      <!-- EDIT: replace # with real profile URLs when available -->
+      <div class="links-row">
+        <a href="#">LinkedIn</a>
+        <a href="#">Google Scholar</a>
+        <a href="#">Penn State Profile</a>
+        <a href="#">ResearchGate</a>
+      </div>
+    </div>
+
+    <!-- ========== CV DOWNLOAD ========== -->
+    <div class="section">
+      <!-- EDIT: point href at the CV PDF when available -->
+      <a href="#" class="outline-button">Download CV (PDF)</a>
+    </div>
+
+    <footer class="site-footer">© 2026 ML Brown · All Rights Reserved</footer>
+  </main>
+
+  <button id="backToTop" class="back-to-top" aria-label="Back to top">&uarr;</button>
+  <script src="script.js"></script>
+</body>
+</html>

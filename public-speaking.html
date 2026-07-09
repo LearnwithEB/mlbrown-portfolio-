@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<!-- ============================================================
+     PUBLIC-SPEAKING.HTML — Speaking & Booking
+     ============================================================ -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Public Speaking — ML Brown</title>
+  <meta name="description" content="Book ML Brown for keynotes, panels, lectures, and community conversations on special education equity, neurodiversity, and disability policy.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <div class="navbar">
+    <button id="menuButton" class="menu-button" aria-label="Open menu" aria-expanded="false">
+      <span class="menu-line"></span>
+      <span class="menu-line"></span>
+      <span class="menu-line"></span>
+    </button>
+  </div>
+  <div id="navOverlay" class="nav-overlay"></div>
+  <nav id="navPanel" class="nav-panel" aria-label="Site navigation">
+    <p class="nav-panel-label">ML Brown — Menu</p>
+    <a href="index.html">Home</a>
+    <a href="public-speaking.html" class="current">Public Speaking</a>
+    <a href="research.html">Research</a>
+    <a href="creative-work.html">Creative Work</a>
+    <a href="community.html">Community</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <p class="nav-panel-footer">© 2026 ML Brown</p>
+  </nav>
+
+  <!-- ========== LEFT PANEL ========== -->
+  <div class="main-photo-wrapper">
+    <img class="main-photo"
+         src="images/headshot.jpg"
+         alt="Portrait of ML Brown smiling in a navy Penn State quarter-zip">
+    <div class="photo-area-scrim"></div>
+    <p class="photo-credit">Photo provided to Penn State College of Education</p>
+  </div>
+  <span class="vertical-label">ML Brown</span>
+
+  <!-- ========== RIGHT PANEL ========== -->
+  <main class="content-wrapper inner-page">
+    <div class="breadcrumb-bar">
+      <a href="index.html">Home</a> / Public Speaking
+    </div>
+
+    <div class="page-title">
+      <h1 class="title-huge">Public <span class="italic-text">Speaking</span></h1>
+      <!-- EDIT: page intro -->
+      <h2 class="large-text">
+        Speaking about the intersection of race, disability, and educational equity is not
+        just part of my work — it is the work. I translate research into conversations that
+        move communities and change systems.
+      </h2>
+    </div>
+
+    <!-- ========== FEATURED TALK ========== -->
+    <div class="section">
+      <p class="accent-label">Featured Talk:</p>
+      <div class="horizontal-video-section">
+        <!-- To show a real video: add data-youtube-id="VIDEO_ID" below
+             (the part after watch?v= in the YouTube URL) -->
+        <div id="videoThumb" class="video-thumb" data-youtube-id="" role="button" tabindex="0" aria-label="Play featured talk">
+          <div class="play-button"></div>
+          <span class="thumb-note">Watch — recording coming soon</span>
+        </div>
+        <div class="video-meta">
+          <p class="talk-title">&ldquo;Beyond the Diagnosis: Fathers and Father Figures&rdquo; Panel</p>
+          <p class="talk-host">Alpha Kappa Alpha Sorority, Inc. — Alpha Epsilon Eta Omega Chapter</p>
+          <p class="talk-date">June 30, 2026 · Zoom</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== TOPICS ========== -->
+    <div class="section">
+      <p class="accent-label">Topics I Speak On:</p>
+      <div class="topic-item">
+        <span class="topic-num">01</span>
+        <span class="topic-name">The Miseducation of Black Boys with EBD</span>
+      </div>
+      <div class="topic-item">
+        <span class="topic-num">02</span>
+        <span class="topic-name">Black Neurodivergent Youth &amp; Systemic Inequity</span>
+      </div>
+      <div class="topic-item">
+        <span class="topic-num">03</span>
+        <span class="topic-name">Race, Disability, and Educational Policy</span>
+      </div>
+      <div class="topic-item">
+        <span class="topic-num">04</span>
+        <span class="topic-name">Fathers &amp; Families Beyond the Diagnosis</span>
+      </div>
+      <div class="topic-item">
+        <span class="topic-num">05</span>
+        <span class="topic-name">Non-Traditional Scholars &amp; Neurodivergent Identity in Academia</span>
+      </div>
+    </div>
+
+    <!-- ========== UPCOMING EVENTS ========== -->
+    <div class="section">
+      <p class="accent-label">Upcoming Events:</p>
+      <!-- EDIT: replace the placeholder with real events, one .event-item per event -->
+      <div class="event-item">
+        <span class="event-name muted italic-text">New engagements will be announced here.</span>
+        <span class="event-meta">TBA</span>
+      </div>
+    </div>
+
+    <!-- ========== RECENT PAST ========== -->
+    <div class="section">
+      <p class="accent-label">Recent Past:</p>
+      <ul class="plain-list">
+        <li>Penn State Graduate Exhibition — Research Poster Presentation (May 2026)</li>
+        <li>&ldquo;Beyond the Diagnosis&rdquo; Panel — Session 3 (June 2026)</li>
+      </ul>
+    </div>
+
+    <!-- ========== BOOKING FORM ========== -->
+    <div class="section">
+      <p class="accent-label">Book ML Brown</p>
+      <!-- Front-end only; see script.js for how to connect a form service -->
+      <form class="form-grid" data-confirm="bookingConfirm">
+        <input type="text" name="name" class="form-field" placeholder="Name *" required>
+        <input type="text" name="organization" class="form-field" placeholder="Organization">
+        <input type="email" name="email" class="form-field" placeholder="Email *" required>
+        <input type="date" name="eventDate" class="form-field" aria-label="Event date">
+        <select name="eventType" class="form-field full-width" aria-label="Event type">
+          <option value="" disabled selected>Event Type</option>
+          <option>Keynote</option>
+          <option>Panel</option>
+          <option>Lecture</option>
+          <option>Community Event</option>
+          <option>Other</option>
+        </select>
+        <textarea name="message" class="form-field full-width" placeholder="Tell me about your event *" required></textarea>
+        <div class="full-width">
+          <button type="submit" class="submit-button">Send Inquiry</button>
+          <p id="bookingConfirm" class="form-confirm">Thank you — your inquiry has been received.</p>
+        </div>
+      </form>
+    </div>
+
+    <footer class="site-footer">© 2026 ML Brown · All Rights Reserved</footer>
+  </main>
+
+  <!-- ========== VIDEO LIGHTBOX ========== -->
+  <div id="videoLightbox" class="lightbox" aria-hidden="true">
+    <div class="lightbox-content">
+      <button id="lightboxClose" class="lightbox-close" aria-label="Close video">Close ✕</button>
+      <div id="lightboxBody" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;"></div>
+    </div>
+  </div>
+
+  <button id="backToTop" class="back-to-top" aria-label="Back to top">&uarr;</button>
+  <script src="script.js"></script>
+</body>
+</html>
